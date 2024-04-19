@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scheduling in DragonFly BSD</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.css'>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<article>
+  <div class="article-title">
+    <h1>Scheduling in DragonFly BSD</h1>
+    <div class="progress-wrapper">
+      <div class="progress-label"></div>
+      <progress></progress>
+    </div>
+  </div>
+  <img src="https://cdn.wallpapersafari.com/55/34/PiIyAw.png"/>
+  <h3>MLFQ</h3>
+  <p>DragonFly BSD, like many Unix-like operating systems, primarily uses a scheduling algorithm called the Multi-Level Feedback Queue (MLFQ) scheduler. The MLFQ scheduler is a versatile and widely used scheduling algorithm in modern operating systems due to its ability to balance system responsiveness, fairness, and throughput. Here's an overview of how the MLFQ scheduler works:</p>
+  <ol>
+    <li>
+      <strong>Multiple Queues:</strong> The MLFQ scheduler maintains multiple queues, each representing a different priority level. Typically, there are several priority levels, with higher-priority queues having shorter time slices and lower-priority queues having longer time slices.
+    </li>
+    <li>
+      <strong>Dynamic Priority Adjustment:</strong> Processes are initially placed into the highest priority queue. As a process consumes its time quantum without blocking, it is demoted to a lower-priority queue. Conversely, if a process blocks or voluntarily yields the CPU before exhausting its time quantum, it is promoted to a higher-priority queue.
+    </li>
+    <li>
+      <strong>Aging Mechanism:</strong> To prevent starvation of low-priority processes, the MLFQ scheduler employs an aging mechanism. This mechanism gradually increases the priority of processes waiting in lower-priority queues, ensuring that they eventually get a chance to execute.
+    </li>
+    <li>
+      <strong>Preemption:</strong> The MLFQ scheduler supports preemption, allowing higher-priority processes to preempt lower-priority ones when they become runnable. This ensures that critical tasks can execute promptly without unnecessary delays.
+    </li>
+    <li>
+      <strong>I/O Bound vs. CPU Bound Differentiation:</strong> MLFQ schedulers often differentiate between I/O-bound and CPU-bound processes. I/O-bound processes are more likely to be promoted to higher-priority queues since they tend to block frequently, while CPU-bound processes are more likely to be demoted since they consume their time slices without blocking.
+    </li>
+    <li>
+      <strong>Quantum Adjustment:</strong> Some MLFQ implementations dynamically adjust the time quantum assigned to each queue based on factors such as process behavior and system load. This adaptive approach helps optimize system performance under varying workloads.
+    </li>
+  </ol>
+  <p>The MLFQ scheduler strikes a balance between providing low-latency response for interactive tasks and maximizing overall system throughput by efficiently utilizing CPU resources. While DragonFly BSD primarily employs the MLFQ scheduler, it may also include additional optimizations or variations tailored to its specific design goals and requirements.</p>
+</article>
+
+<!-- Instagram Frame -->
+<iframe src="python/index.html" style="border:none; width:100%; height: 3000px;"></iframe>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+<script  src="./script.js"></script>
+
+</body>
+</html>
